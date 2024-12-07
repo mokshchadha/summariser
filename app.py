@@ -6,10 +6,19 @@ import whisper
 from pydub import AudioSegment
 from dotenv import load_dotenv
 
-load_dotenv()
+# Load environment variables as fallback
+load_dotenv(override=True)
+
+# Helper function to get config values with fallback
+def get_config(key):
+    try:
+        return st.secrets[key]
+    except KeyError:
+        return os.getenv(key)
+
 
 # Configure the Gemini model
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=get_config("GOOGLE_API_KEY"))
 model = genai.GenerativeModel('gemini-1.5-pro-latest')
 
 # Load Whisper model
