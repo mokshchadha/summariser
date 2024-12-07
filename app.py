@@ -70,7 +70,6 @@ def get_binary_file_downloader_html(bin_file, file_label='File'):
     return href
 
 def main():
-    st.title("Hi Pradeep")
     st.title("Video/Audio to Notes Converter")
 
     uploaded_file = st.file_uploader("Choose a video or audio file", type=["mp4", "mov", "avi", "m4a", "wav", "mp3"])
